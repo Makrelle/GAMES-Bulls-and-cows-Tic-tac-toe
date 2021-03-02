@@ -4,9 +4,8 @@ SEPARATOR = "=" * 40
 MINI_SEPARATOR = "-" * 9
 
 
-def introduction() -> None:
-    print(SEPARATOR)
-    print("""GAME RULES:
+print(SEPARATOR)
+print("""GAME RULES:
 Each player can place one mark (or stone) per turn on the 3x3 grid
 The WINNER is who succeeds in placing three of their marks in a
 * horizontal,
@@ -44,7 +43,7 @@ def player_move(table: list) -> str:
 
                 if check_winner(table, player):
                     return f"Congratulations, the player {player} WON!"
-                i = switch_player(i)
+                i = 1 - i  # switch player
                 moves += 1
 
                 if moves == 9:
@@ -66,21 +65,16 @@ def check_free_position(row: int, column: int, table: list) -> bool:
 
 
 def check_winner(table: list, player: str) -> bool:
-    winner = ""
     for i in range(3):
         if table[i][0] == table[i][1] == table[i][2] != " ":  # check rows
-            winner = player
-        if table[0][i] == table[1][i] == table[2][i] != " ":  # check columns
-            winner = player
-    if table[0][0] == table[1][1] == table[2][2] != " "\
-            or table[0][2] == table[1][1] == table[2][0] != " ":  # check diagonals
-        winner = player
-    return True if winner else False
-
-
-def switch_player(i: int) -> int:
-    i = 1 - i
-    return i
+            return True
+        elif table[0][i] == table[1][i] == table[2][i] != " ":  # check columns
+            return True
+        elif table[0][0] == table[1][1] == table[2][2] != " "\
+                or table[0][2] == table[1][1] == table[2][0] != " ":
+            # check diagonals
+            return True
+    return False
 
 
 def print_table(table: list) -> None:
@@ -91,7 +85,6 @@ def print_table(table: list) -> None:
 
 
 def main():
-    introduction()
     table = creating_table()
     print_table(table)
     print(player_move(table))
