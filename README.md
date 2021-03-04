@@ -1,2 +1,5 @@
 # my-second-project
-Engeto - Python Academy, Project 2, Tic Tac Toe
+Engeto - Python Academy
+Projects 2:
+    Tic Tac Toe
+    Bulls and Cows
