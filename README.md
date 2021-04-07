@@ -25,6 +25,7 @@ ___
 - a fun logic guessing game. 
 ### Game rules:
 The computer will generate a 4-digit secret number(every digit is different and has value from 0-9).
+
 In every turn you guess the number and you get number of **bulls** and **cows**.
 * **bulls** - number of digits in the right positions
 * **cows** - number of correct digits but in a different position
